@@ -43,7 +43,7 @@ survplot <- function(fit,
 }
 
 
-survplot(fit, legend.labs = c('Male', 'Femal'), conf.int = TRUE, xlim = c(0, 750)) +
+survplot(fit, legend.labs = c('Male', 'Female'), conf.int = TRUE, xlim = c(0, 750)) +
   labs(x = 'Time in days') +
   guides(
      fill = guide_legend(title = 'Gender'),
@@ -51,3 +51,16 @@ survplot(fit, legend.labs = c('Male', 'Femal'), conf.int = TRUE, xlim = c(0, 750
   )
 
 g6tr_save('plots/002_survival_curves.pdf')
+
+survplot(fit, legend.labs = c('Male', 'Female'), conf.int = TRUE, xlim = c(0, 750),
+         break.x.by = 150,
+         risk.table = TRUE,
+         risk.table.y.text = TRUE # show names instead of bars
+         ) %>%
+  extract2(2) +
+  labs(x = 'Time in days', y = 'Gender', title = 'Observations at risk at a specific time')
+  # guides(
+  #   fill = guide_legend(title = 'Gender'),
+  #   color = guide_legend(title = 'Gender')
+  # )
+g6tr_save('plots/003_risk_table.pdf', width = 7, height = 4)
