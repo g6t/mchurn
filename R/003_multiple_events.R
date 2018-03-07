@@ -1,3 +1,6 @@
+library(ggplot2);library(dplyr)
+# library(g6tr); theme_set(theme_g6tr())
+
 head(ebmt4, 40) %>%
   tail(6) %>%
   select(c(1:5, 8:9)) %>%
